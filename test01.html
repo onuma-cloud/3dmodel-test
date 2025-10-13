@@ -1,48 +1,32 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-  <meta charset="utf-8">
-  <title>3Dモデル＆ARハイブリッド</title>
-  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-  <style>
-    html, body { margin: 0; height: 100%; overflow: hidden; }
-    #ar-link { display: none; position: absolute; top: 10px; left: 10px; z-index: 10; }
-  </style>
-</head>
-<body>
+  <head>
+    <meta charset="utf-8">
+    <title>360度背景＋3Dモデル - A-Frame</title>
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <style>
+      html, body { margin: 0; height: 100%; overflow: hidden; }
+    </style>
+  </head>
+  <body>
+    <a-scene>
+      <!-- ① 背景を360度画像にする -->
+      <a-sky src="gassan.jpeg"></a-sky>
 
-<!-- ① 360度背景 + 3Dモデル（A-Frame） -->
-<a-scene id="aframe-scene">
-  <a-sky src="gassan.jpeg"></a-sky>
+      <!-- ② 3Dモデルを配置する -->
+      <a-entity 
+        gltf-model="3dken.glb"
+        position="0 0 -3"
+        scale="0.5 0.5 0.5"
+        rotation="0 180 0">
+      </a-entity>
 
-  <a-entity 
-    id="model"
-    gltf-model="3D.glb"   <!-- PC用GLBモデル -->
-    position="-20 -20 -20"
-    scale="10 10 10"
-    rotation="0 270 0">
-  </a-entity>
+      <!-- ③ 光源 -->
+      <a-entity light="type: ambient; intensity: 0.8"></a-entity>
+      <a-entity light="type: directional; intensity: 0.6" position="1 1 1"></a-entity>
 
-  <a-entity light="type: ambient; intensity: 0.8"></a-entity>
-  <a-entity light="type: directional; intensity: 0.6" position="1 1 1"></a-entity>
-  <a-entity camera look-controls position="0 0 0"></a-entity>
-</a-scene>
-
-<!-- ② iPhone用 USDZ ARリンク -->
-<a id="ar-link" href="3dken.usdz" rel="ar">
-  <img src="preview.png" alt="iPhoneでAR表示" width="100">
-</a>
-
-<script>
-  // デバイス判定（iPhone / iPadならARリンク表示、A-Frame非表示）
-  const isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-  if(isiOS) {
-    document.getElementById('aframe-scene').style.display = 'none';
-    document.getElementById('ar-link').style.display = 'block';
-  }
-</script>
-
-</body>
+      <!-- ④ カメラ操作（マウス・スマホで見回せる） -->
+      <a-entity camera look-controls></a-entity>
+    </a-scene>
+  </body>
 </html>
-
-
