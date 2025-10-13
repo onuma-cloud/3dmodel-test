@@ -13,14 +13,14 @@
 
 <!-- ① 360度背景 + 3Dモデル（A-Frame） -->
 <a-scene id="aframe-scene">
-  <a-sky src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/sechelt.jpg"></a-sky>
+  <a-sky src="gassan.jpeg"></a-sky>
 
   <a-entity 
     id="model"
     gltf-model="model.glb"   <!-- PC用GLBモデル -->
     position="0 0 -3"
-    scale="0.5 0.5 0.5"
-    rotation="0 180 0">
+    scale="2 2 2"
+    rotation="0 270 0">
   </a-entity>
 
   <a-entity light="type: ambient; intensity: 0.8"></a-entity>
@@ -29,7 +29,7 @@
 </a-scene>
 
 <!-- ② iPhone用 USDZ ARリンク -->
-<a id="ar-link" href="model.usdz" rel="ar">
+<a id="ar-link" href="3dken.usdz" rel="ar">
   <img src="preview.png" alt="iPhoneでAR表示" width="100">
 </a>
 
@@ -44,3 +44,4 @@
 
 </body>
 </html>
+
