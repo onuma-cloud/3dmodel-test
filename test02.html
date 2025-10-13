@@ -1,1 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>AR自動表示 (iPhone / Vision Pro)</title>
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f0f0f0;
+      font-family: sans-serif;
+    }
+    #message { text-align: center; }
+    a { display: none; }
+  </style>
+</head>
+<body>
 
+<div id="message">
+  ARを起動中… <br>
+  開かれない場合は画面をタップしてください。
+</div>
+
+<a id="ar-link" href="3dken.usdz" rel="ar">AR表示</a>
+
+<script>
+  // Appleデバイス判定（iPhone / iPad / Vision Pro）
+  const isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+  const isVisionPro = /Vision/.test(navigator.userAgent); // Vision ProのUser-Agentに含まれる場合あり
+  if (isiOS || isVisionPro) {
+    const link = document.getElementById('ar-link');
+    // ページ読み込み後にリンクを疑似クリック
+    window.addEventListener('load', () => {
+      link.click();
+    });
+  } else {
+    document.getElementById('message').innerText = "Apple Vision ProまたはiPhoneで開いてください";
+  }
+</script>
+
+</body>
+</html>
