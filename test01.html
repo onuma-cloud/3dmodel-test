@@ -2,7 +2,7 @@
 <html lang="ja">
   <head>
     <meta charset="utf-8">
-    <title>360度背景＋3Dモデル - A-Frame</title>
+    <title>360度画像ビュー - A-Frame</title>
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
     <style>
       html, body { margin: 0; height: 100%; overflow: hidden; }
@@ -10,22 +10,8 @@
   </head>
   <body>
     <a-scene>
-      <!-- ① 背景を360度画像にする -->
+      <!-- 360度画像の設定 -->
       <a-sky src="gassan.jpeg"></a-sky>
-
-      <!-- ② 3Dモデルを配置する -->
-      <a-entity 
-        gltf-model="3D.glb"
-        position="0 0 -3"
-        scale="0.5 0.5 0.5"
-        rotation="0 180 0">
-      </a-entity>
-
-      <!-- ③ 光源 -->
-      <a-entity light="type: ambient; intensity: 0.8"></a-entity>
-      <a-entity light="type: directional; intensity: 0.6" position="1 1 1"></a-entity>
-
-      <!-- ④ カメラ操作（マウス・スマホで見回せる） -->
       <a-entity camera look-controls></a-entity>
     </a-scene>
   </body>
