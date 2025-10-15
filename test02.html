@@ -3,35 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>3Dモデル表示</title>
-  <style>
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      background-color: #f0f0f0;
-      font-family: sans-serif;
-    }
-    a {
-      display: inline-block;
-      padding: 20px 40px;
-      background-color: #007aff;
-      color: white;
-      text-decoration: none;
-      border-radius: 12px;
-      font-size: 18px;
-    }
-    a:hover {
-      background-color: #005bb5;
-    }
-  </style>
+  <title>360度動画再生</title>
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
 </head>
 <body>
-  <!-- Quick Look 用リンク -->
-  <a href="3dbeni.usdz" rel="ar">
-    3Dモデルを表示
-  </a>
+  <a-scene>
+    <!-- 360度動画用スカイ -->
+    <a-videosphere src="#myVideo" rotation="0 -90 0"></a-videosphere>
+
+    <!-- カメラ -->
+    <a-entity camera look-controls></a-entity>
+    
+    <!-- 動画ソース -->
+    <video id="myVideo" src="https://drive.google.com/file/d/1yyPGL5fVFegAgDBw4-wM7LFTCNDI8xMD/view?usp=sharing" autoplay loop crossorigin="anonymous" playsinline webkit-playsinline muted></video>
+  </a-scene>
 </body>
 </html>
