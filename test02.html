@@ -1,34 +1,39 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vision Pro 360度動画再生</title>
-  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-</head>
-<body>
-  <a-scene>
-    <!-- 360度動画用スカイ -->
-    <a-videosphere 
-      src="#myVideo" 
-      rotation="0 -90 0" 
-      material="shader: flat">
-    </a-videosphere>
+  <head>
+    <meta charset="UTF-8">
+    <title>Vision Pro 360°動画再生テスト</title>
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <style>
+      #playButton {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 20px 40px;
+        font-size: 20px;
+        border: none;
+        border-radius: 10px;
+        background-color: #007aff;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="playButton">再生する</button>
+    <a-scene>
+      <a-videosphere id="sphere" src="#myVideo" material="shader: flat"></a-videosphere>
+      <a-entity camera look-controls></a-entity>
+      <video id="myVideo" src="gassan360.mp4" loop playsinline webkit-playsinline crossorigin="anonymous" muted></video>
+    </a-scene>
 
-    <!-- カメラ -->
-    <a-entity camera look-controls></a-entity>
-
-    <!-- 動画ソース -->
-    <video 
-      id="myVideo" 
-      src="kadai.mp4" 
-      autoplay 
-      muted 
-      loop 
-      playsinline 
-      webkit-playsinline 
-      crossorigin="anonymous">
-    </video>
-  </a-scene>
-</body>
+    <script>
+      const btn = document.getElementById('playButton');
+      const video = document.getElementById('myVideo');
+      btn.addEventListener('click', async () => {
+        await video.play();
+        btn.style.display = 'none';
+      });
+    </script>
+  </body>
 </html>
