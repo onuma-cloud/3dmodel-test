@@ -2,40 +2,48 @@
 <html lang="ja">
   <head>
     <meta charset="UTF-8">
-    <title>Vision Pro 360°動画再生（ボタン対応）</title>
+    <title>Vision Pro 360°動画 自動再生</title>
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
   </head>
   <body>
     <a-scene>
-      <!-- 360度動画用スカイ -->
-      <a-videosphere id="sphere" src="#myVideo" material="shader: flat" rotation="0 -90 0"></a-videosphere>
-
-      <!-- 再生ボタン（3D空間内） -->
-      <a-entity id="playButton" position="0 1.6 -2">
-        <a-plane color="#007aff" height="0.4" width="1.2" radius="0.1" opacity="0.9"></a-plane>
-        <a-text value="▶ 再生" align="center" color="white" position="0 0 0.05" width="4"></a-text>
-      </a-entity>
+      <!-- 360度動画スフィア -->
+      <a-videosphere 
+        id="sphere" 
+        src="#myVideo" 
+        rotation="0 -90 0"
+        material="shader: flat">
+      </a-videosphere>
 
       <!-- カメラ -->
       <a-entity camera look-controls position="0 1.6 0"></a-entity>
 
       <!-- 動画ソース -->
-      <video id="myVideo" src="kadai.mp4" loop playsinline webkit-playsinline crossorigin="anonymous" muted></video>
+      <video 
+        id="myVideo" 
+        src="kadai.mp4" 
+        autoplay 
+        loop 
+        muted 
+        playsinline 
+        webkit-playsinline 
+        crossorigin="anonymous">
+      </video>
     </a-scene>
 
     <script>
-      const playButton = document.querySelector('#playButton');
-      const video = document.querySelector('#myVideo');
-      const sphere = document.querySelector('#sphere');
-
-      playButton.addEventListener('click', async () => {
-        try {
-          await video.play();
-          playButton.setAttribute('visible', 'false'); // ボタンを非表示に
-          console.log("動画再生開始");
-        } catch (e) {
-          console.error("再生エラー:", e);
-        }
+      // Vision Proでは video.play() を明示的に呼ぶと安定する
+      window.addEventListener('DOMContentLoaded', () => {
+        const video = document.getElementById('myVideo');
+        const tryPlay = () => {
+          video.play().catch(err => {
+            console.warn("自動再生ブロック: ", err);
+          });
+        };
+        // ページロード時に繰り返し試す（Vision Pro用）
+        tryPlay();
+        setTimeout(tryPlay, 1000);
+        setTimeout(tryPlay, 3000);
       });
     </script>
   </body>
