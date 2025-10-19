@@ -2,19 +2,25 @@
 <html lang="ja">
   <head>
     <meta charset="utf-8">
-    <title>P-jyubuichi Panorama (Immersive)</title>
+    <title>P-jyubuichi Panorama 240° (Vision Pro)</title>
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
   </head>
   <body>
-    <a-scene>
-      <!-- 半球よりやや狭い角度で自然な没入感に調整 -->
-      <a-entity geometry="primitive: sphere; radius: 10; phiStart: 0; phiLength: 180; thetaStart: -80; thetaLength: 160;"
-                material="shader: flat; src: P-jyubuichi1.jpg; side: back;"
-                rotation="0 -90 0">
-      </a-entity>
+    <a-scene background="color: #000000">
+      
+      <!-- 240°湾曲パノラマパネル -->
+      <a-curvedimage 
+        src="P-jyubuichi1.jpg"
+        radius="7"          <!-- カーブ半径（6〜8が自然） -->
+        theta-length="240"  <!-- パノラマ角度：240° -->
+        height="3.2"        <!-- 高さ：視点とバランスをとる -->
+        position="0 1.6 -4" <!-- カメラとの距離 -->
+        rotation="0 0 0">
+      </a-curvedimage>
 
-      <!-- カメラ（自由に見回せる） -->
-      <a-camera look-controls="true" wasd-controls="false" position="0 1.6 0"></a-camera>
+      <!-- カメラ設定（視点操作） -->
+      <a-camera look-controls="true" wasd-controls="false"></a-camera>
+
     </a-scene>
   </body>
 </html>
