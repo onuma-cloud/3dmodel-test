@@ -2,23 +2,19 @@
 <html lang="ja">
   <head>
     <meta charset="utf-8">
-    <title>Gassan Panorama Immersive</title>
+    <title>P-jyubuichi Panorama (Immersive)</title>
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
   </head>
   <body>
     <a-scene>
-      <!-- 半球状に近い形で背景にパノラマを貼る -->
-      <a-sky 
-        src="P-jyubuichi1.jpg" 
-        radius="10"
-        phi-start="0"
-        phi-length="240"
-        theta-start="-90"
-        theta-length="100"
-        rotation="0 0 0">
-      </a-sky>
+      <!-- 半球よりやや狭い角度で自然な没入感に調整 -->
+      <a-entity geometry="primitive: sphere; radius: 10; phiStart: 0; phiLength: 180; thetaStart: -80; thetaLength: 160;"
+                material="shader: flat; src: P-jyubuichi1.jpg; side: back;"
+                rotation="0 -90 0">
+      </a-entity>
 
-      <a-camera look-controls="true"></a-camera>
+      <!-- カメラ（自由に見回せる） -->
+      <a-camera look-controls="true" wasd-controls="false" position="0 1.6 0"></a-camera>
     </a-scene>
   </body>
 </html>
