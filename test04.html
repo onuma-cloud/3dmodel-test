@@ -2,21 +2,20 @@
 <html lang="ja">
   <head>
     <meta charset="utf-8">
-    <title>Gassan Panorama Immersive</title>
+    <title>Gassan Panorama Curved Panel</title>
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
   </head>
   <body>
-    <a-scene>
-      <!-- 半球状に近い形で背景にパノラマを貼る -->
-      <a-sky 
-        src="Gassan01.jpeg" 
-        radius="10"
-        phi-start="0"
-        phi-length="180"
-        theta-start="-90"
-        theta-length="180"
-        rotation="0 -90 0">
-      </a-sky>
+    <a-scene background="color: #000">
+      <!-- 前方に湾曲したパノラマパネル -->
+      <a-curvedimage
+        src="P-jyubuichi1.jpg"
+        radius="5"
+        theta-length="140"
+        height="3"
+        position="0 1.6 -4"
+        rotation="0 0 0">
+      </a-curvedimage>
 
       <a-camera look-controls="true"></a-camera>
     </a-scene>
